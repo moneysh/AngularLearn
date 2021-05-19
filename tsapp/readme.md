@@ -73,7 +73,27 @@
         - forEach() and map() method used for iteration in Array
             - forEach() returns void so it cannot modify the array and return it
             - map() can return a new array by modifying it
-        - filter(), method used to return array of resultant values from input array based on condition that is true                     
+        - filter(), method used to return array of resultant values from input array based on condition that is true       
+    - Object Oriented Programming
+        - Familarity for server-side developers to work with Modern front-end APps            
+            - The 'class'
+                - default access specifiers for members is 'public'
+                - used 'private' and 'protected' explicitely
+                - the 'this' object is a default scope of JavaScript used in class for accessing class members      
+            - Parameterized constructor
+                - COnstructor with Access Spcifires for parameters those are 
+                used to define members opf class
+                    - the 'constructor()' is a standard function
+            - No support for Overloading by default
+            - Inheritence using 'extends' keyword
+                - If the base class have the ctor with parameters then derive class ctor must use the 'super()' call in it to link scope of derived class with the base class 
+            - Interface is implemented using  'interface' (this is a type) and it is implemented by class using 'implements' keyword  
+    - Promise objects
+        - like a 'Task' objectb in .NET 4.x
+            - Unit of Async operation
+        - Promise is used to contain all async operations
+            - ES 7+
+                -  if a method returns promise object then it can be decorated with 'async'  and the statement for promsie is decorated with 'await'                   
 
 # Hands-on-Labs
 

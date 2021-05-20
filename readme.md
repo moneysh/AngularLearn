@@ -178,12 +178,53 @@
                 - The new request dom is compared with already cached DOM and only changed are pushed for rendering
                 - Incremental changes on to the enw DOM request with less memory-footprint   
 
+# Programming with Angular
+- Creating Angular Component using of Model classes for Application Development
+    - Component
+        - Data Properties
+            - Received from Model classes
+        - Events
+            - Use to exeucte 'some-front-end-logic'
+                - Provided to component using the Presenter Logic class 
+        - If component uses (hence the Anngular Application) the third party CSS lib / frwk theninstall it using the following command
+            - npm instal; --save bootstrap
+        - Configure this lib /  frwk in the 'styles' of angular.json in the build configuration      
+        - Angular Component's Lifecycle Methods
+            - OnChange, ths interface implemented by Component. THis has 'ngOnChange()'
+                - Executed when a property is changed. Invoked after ctor but before ngOnInit
+            - OnInit, the interface implemented by Component. THis has 'ngOnInit()'
+                -  ngOnInit(), method will be invoked immediately after constructor
+                    - Write logic thatb we cannot prefer to write inside ctor 
+                        - e.g. HTTP Service calls or any other resource intensive operations
+            - OnDoCheck, ths interface implemented by Component. THis has 'ngDoCheck()'
+                - Check for any updated needed in HTML based on Property Changed. Invoked afeter ngOnInit  
+            - Then View Methods     
+        - Practices to be followed while definig HTML generation for the component based on the data
+            - If the HTML elements e.g. Table is dynamically egnerated based on external data, then avoid hardcoding of Headers and Rows in HTML. Instead use the generalization using JavaScript REflection fearures
+            - If the TypeScript class (4.0+) is used to read is properties dynamically in iteration then the class must have an 'Index Signetire' to support the property names reading in iteration
+                - [x:string]:any
+                    - Add this member in the typescript class
+                        - x will be the name of the property. This property name will be string
+                        - any is the type of the property       
+            - If a same HTML UI is appearing multiple times in single or across multiple components, then think of creating re-usable component and use it as child component   
+                - Using the Component as 'Directive'         
+    - Component Rusability
+        - The Child COmponent Must have @Input() decorated prtoperty for acceping data from parent. Thsi property will be used for 'Proeprty-Binding' by parent component. The child component must have @Output() decorated EventEmitter<T> property that will emit an event from child to parent and parent will subscribe it as 'Event-Binding'. Data emitted fron child to parent will be captured byb paret using $event object. (JAVASCRIPT standard event object) 
+    - Forms 
+
 
 
 # Hands-on Lab
 # Date : 19-May-2021
 1. Create a 'Angular Calculator' looks like the WIndows Calculator with scientific Features (Mandatory)
-2. Generate HTML Table based on the Complex Array using *ngFor (optional)
+2. Generate HTML xTable based on the Complex Array using *ngFor (optional)
     - Heades and Rows must be generated dynamically
+
+# Dae: 20-May-2021
+1. CReate a GridComponetn using HTML Table with FOllowing needs
+    - All Columns and Rows MUST be dunamically generated
+    - The Component must have 'canDelete' property, if this is set to true, each row of the table should generate delete button. When this button is clicked the row must be removed from Collection of the parent component
+    - Each column must have 'sort' and 'reverse' button (use Bootstarp classed to show Arrow buttons)
+        - sort / reverse the table columns based on click on these buttons  
 
 

@@ -211,6 +211,79 @@
     - Component Rusability
         - The Child COmponent Must have @Input() decorated prtoperty for acceping data from parent. Thsi property will be used for 'Proeprty-Binding' by parent component. The child component must have @Output() decorated EventEmitter<T> property that will emit an event from child to parent and parent will subscribe it as 'Event-Binding'. Data emitted fron child to parent will be captured byb paret using $event object. (JAVASCRIPT standard event object) 
     - Forms 
+        - FOllowing error will occur when the ngModel is enclosed inside the <form> tag
+            - If ngModel is used within a form tag, either the name attribute must be set or the form
+                    control must be defined as 'standalone' in ngModelOptions.
+            - Reason for Error: the <form> tag expects name:value pair as a combinition for data to be posted from UI inside the <form>, where as the 'ngModel' is configured to change each property of UI and update it separately on the component and hence the FormModel will not be formed and Angular will produce HTML Rendering Error
+                - The Single Model object as FormModel will never be generated and hence "Model-Speicic-Validations" won't bt processed ot executed by the COmponent    
+        - Using Reactive Forms
+            - @angular/forms
+                - ReactiveFormsModule
+                    - FormGroup
+                        - This represents a <form> tag with HTML editable elements inside it.
+                        - Technically this is a 'formsCollection'
+                            - formCollection, is a collection of all editable elements applied with 'formControlName' attribute (replacement of 'name' attribute of HTML element)
+                        - Each element of the formCollection is executed by Angular using 'FormControl' class
+                            - The FormControl class is a mapping between 'public property of Model class' with the HTML element applied with formControlName attribute     
+                        - <PUBLIC-PROPERTY-OF-MODEL-CLASS> ---> 'string key' --> applied on HTML element using 'formContrlName'
+                            - e.g.
+                                - ProductRowId ---> 'ProductRowId' -->
+                                    <input type="text" formControlName='ProductRowId'>
+                            - The FormControl also allows to define validation rules directly on the Model class proeprty
+                    - FormGroup is applied on <form> tag using [formGroup] attribute directive 
+                    - formControlName is also an attribute directive used to map model class property with HTML elemeng alon with validation   
+                    - Validators class
+                        - Class that contains static methods for Model Property Vaidations
+                        - required(AbstractControl), requiredTrue(AbstractControl)
+                        - max(number) / min(number)
+                        - maxLength(number) / minLength(number)
+                        - pattern(string|RegEx)
+                        - email(AbstractControl)
+                        - compose([<ARRAY-OF-VALIDATION-RULES>])
+                    - AbstractControl, the base class for FormControl, FormGroup, etc.
+                        - If a method accepts AbstractCOntrol as input parameter for validations, then the control on which 'formControlName' is applied, the value fo this control will be immediately invoked by the Validator Mathod      
+                    - FormGroup
+                        - the 'value' property that represents data posted on ngSubmit event    
+                        - the 'setValue()' method to set the data to be shown in all formCOntrols of the FomrGroup
+                    - FromControl
+                        - the 'value' property, representing value entered in individual formControlName
+                        - the 'setValue()' method to set valud for individual formControl   
+                    - Validation Evaluation Hierarchy
+                        - <formGroup>.controls.<formControlName>.dirty
+                            - The element is changed with focus and value entered in it
+                        - <formGroup>.controls.<formControlName>.valid | <formGroup>.controls.<formControlName>.invalid
+                            - Eveluate th value for validation
+                        - <formGroup>.controls.<formControlName>.errors.<VALIDATION-RULE-FAILED>
+                            - VALIDATION-RULE-FAILED
+                                - required, minlength, maxlength, pattern, min, max, custom
+# Creating a Custom Directive
+    - Decide the Bevaior of the Directive
+        - Component Directive
+        - Attribute Directive
+            -  a custom attribute applied on existing HTML element to provide or apply value added custom behavior
+            - Planning
+                - Business Logic for the behavior
+                - What data will be accpted by the directive?
+                    - Used to define @Input() decorated property
+                        - A custom directive may have multiple input decorated properties
+                - When will this directive be activated?
+                    - An event for directive activation
+                    - @HostListener() decorator from @angular/core
+                        - Map a method of the custom directive to HTML Element's Event  
+                        - E.g.
+                            - @HostListener('mouseove') applyColor(){}
+                            - The applyColor() method will be executed on 'MouseMove' event on the HTML element where the directive is applied    
+                - The TargetElement Reference and its expected rendering when the directive is activated  
+                    - ElementRef class from @angular/core is used to target the execution of HTML element on which the directive is applied
+                    - Renderer2 class from @angular/core is used to define the rendering after the directive is executed       
+                - ElementRef and Renderer2, these classes are ctor injected custom directive class
+                    - these are resolved by using the 'BrowserModule' loased by @NgModule
+                - Directive class must be applied with @Directive Decorator from @angular/core
+                    - This contains the 'selector' property that defines the selector which will be used as custom attribute directive
+                        - @Directive ({ selector: '[setColor]' })
+                            - [setColor] is selector name, since it is enclosed on [], t will be used thriugh property-binding
+                    - Register the directive in 'declrations:[]' array of the @NgModule  
+                    - apply the directive on HTML element of the component     
 
 
 
@@ -226,5 +299,13 @@
     - The Component must have 'canDelete' property, if this is set to true, each row of the table should generate delete button. When this button is clicked the row must be removed from Collection of the parent component
     - Each column must have 'sort' and 'reverse' button (use Bootstarp classed to show Arrow buttons)
         - sort / reverse the table columns based on click on these buttons  
+
+# Date 21-May-2021
+1. Complete the ProductCOmponet for Validating all propertes as
+    - All ENtries are Mandatory
+    - ProductName must be String starts from UpperCase Character
+    -  BAsePrice must be +ve integer
+2. Create a custom valiadtor that will make sure that the ProductId is unique. If End-user truen ti enter duplicate value generate an errior message
+3. As an extension of Task 2, create a custom directive that will change border color of the ProductId textbox if the ProductId is repeated      
 
 

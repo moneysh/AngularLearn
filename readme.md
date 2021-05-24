@@ -285,6 +285,77 @@
                     - Register the directive in 'declrations:[]' array of the @NgModule  
                     - apply the directive on HTML element of the component     
 
+# Angular with Application Development using Services
+1. Creating a Simple Angular Service as Utility
+    - Class decorated with @Injectable decorator from @angular/core
+2. Use Angular Service to establish dis-connected communition across components
+    - Kind of Publish-Subscribe Notifications
+    - Components wil talk to each other by shring data w/o any relationship across them
+3. Angular Services for HTTP Calls
+    - @angular/common/http packages
+        - HttpClinetModule class
+            - Platform to manage HTTP Communication from Angular Angular
+            - HttpClient class
+                - Injected into the Angular Service class as ctor() injection
+                - This is resolved by the HttpClientModule class which is imported in the 'imports:[]' array of NgModule     
+            - Methods of HttpClient class
+                - get<T>(), post<T>(), put<T>(), delete<T>(),patch<T>()
+                    - T is the expected respone from the service class as
+                        - Observable<T>    
+                - HttpCLient support HTTP/2
+                    - Supports
+                        - Text, HTML, XML, JSON (from Http/1.x)
+                        - Buffers aka ArrayBuffer
+                        - Blob
+``` javascript
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Product } from "./../models/app.product.model";
+
+@Injectable({
+    providedIn:'root'
+})
+export class HttpService {
+    constructor(private http:HttpClient){}
+    private url:string = 'https://apiapptrainingnewapp.azurewebsites.net/api/products';
+
+    getData(): Observable<Product[]> {
+        let response:Observable<Product[]>;
+        response = this.http.get<Product[]>(this.url);
+        return response;
+    }
+
+    getDataById(id:number): Observable<Product> {
+        let response:Observable<Product>;
+        response = this.http.get<Product>(`${this.url}/${id}`);
+        return response;
+    }
+    postData(prd:Product):Observable<Product> {
+        let response:Observable<Product>;
+        response = this.http.post<Product>(`${this.url}`, prd, {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+        });
+        return response;
+    }
+
+    putData(id:number, prd:Product):Observable<Product> {
+        let response:Observable<Product>;
+        const options = {
+            headers: new HttpHeaders({'Content-Type':'application/json'})
+        };
+        response = this.http.put<Product>(`${this.url}/${id}`, prd,  options);
+        return response;
+    }
+
+    deleteData(id:number): Observable<Product> {
+        let response:Observable<Product>;
+        response = this.http.delete<Product>(`${this.url}/${id}`);
+        return response;
+    }
+} 
+```
+
 
 
 # Hands-on Lab
@@ -306,6 +377,14 @@
     - ProductName must be String starts from UpperCase Character
     -  BAsePrice must be +ve integer
 2. Create a custom valiadtor that will make sure that the ProductId is unique. If End-user truen ti enter duplicate value generate an errior message
-3. As an extension of Task 2, create a custom directive that will change border color of the ProductId textbox if the ProductId is repeated      
+3. As an extension of Task 2, create a custom directive that will change border color of the ProductId textbox if the ProductId is repeated    
+
+# Date 24-May-2021
+1. Complete the ProductFormComponent by using the Http Services for CRUD Operations.
+2. Experience Parallel Calls using forkJoin () from rxjs
+https://www.devcurry.com/2019/11/parallel-http-calls-from-angular.html
+3. https://www.dotnetcurry.com/angularjs/1445/angular-services-component-communication
+
+
 
 

@@ -356,6 +356,27 @@ export class HttpService {
 } 
 ```
 
+# Angular Elements
+1. install @angular/elements
+    - npm install --save @angular/elements@<Version>
+2. The Component to be exposed as element need not to have selector because the selector will be created using code.
+3. Register the Component as CUSTOM ELEMENT using following steps in @NgModule
+    - import { NgModule, CUSTOM_ELEMENTS_SCHEMA, Injector } from '@angular/core';
+        -  Injector
+            - used to inject the Angular Component as Custom Element
+        -  CUSTOM_ELEMENTS_SCHEMA
+            - object used by angular to define an execution for the WebComponent or anyn other WebComponent library (e.g. LitElement) in Angular Application as a child of any component      
+    import { createCustomElement } from "@angular/elements";
+        -  createCustomElement
+            - used to register the Component in Custom Element Regisry of the browser          
+
+# LitElements
+npm install --save lit-element @webcomponents/custom-elements @webcomponents/webcomponentsjs document-register-element lit-html
+1. @webcomponents/custom-elements: indicates that the project supports custom elements for UI
+2. @webcomponents/webcomponentsjs , the pacakge that provide Shadow-DOM execution for the element in Angukar application
+3. lit-element, provides an access to LitElement, the base class for creating LitElement
+4. document-register-element, the packe included in Angular Build to inform it that the Angular app uses LitElement for Rendering so support Propeties and Events
+5.  lit-html, the HTML template under the Shodow DOM 
 
 
 # Hands-on Lab
@@ -385,6 +406,8 @@ export class HttpService {
 https://www.devcurry.com/2019/11/parallel-http-calls-from-angular.html
 3. https://www.dotnetcurry.com/angularjs/1445/angular-services-component-communication
 
+# Date 25-May-2021
 
+1. Create a Mult-Column List using LitElements (No Drop Down)
 
 

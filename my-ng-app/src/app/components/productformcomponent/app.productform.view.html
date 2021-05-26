@@ -54,7 +54,7 @@
                     <div class="form-group">
                        <input type="button" value="Clear" (click)="clear()" class="btn btn-primary">
                        <input type="submit" value="Save" class="btn btn-success"
-                        [disabled]="!frmProduct.valid">
+                        [disabled]="!frmProduct.valid" (click)="saveData()">
                     </div>
                 </div>
             </form>
@@ -86,6 +86,9 @@
                        <tr *ngFor="let prd of products" (click)="getSelectedProduct(prd)"
                         [setColor]="color">
                            <td *ngFor="let header of columnHeaders">{{prd[header]}}</td>
+                           <td>
+                               <input type="button" class="btn-delete" value="delete" (click) = "delete(prd.ProductRowId)">
+                               </td>
                        </tr>
                    </tbody>
                </table>

@@ -4,6 +4,8 @@ import { Product } from "../../models/app.product.model";
 import { ProductLogic } from "../../models/app.product.logic";
 import { Categories,Manufacturers } from "../../models/app.constants";
 import { CustomValidator } from "./app.custom.validator"; 
+import { HttpService } from 'src/app/services/app.http.service';
+
  
 @Component({
     selector: 'app-productform-component',
@@ -18,15 +20,17 @@ export class ProductFormComponent implements OnInit {
     manufacturers  =Manufacturers;
     columnHeaders:Array<string>;
     color:string;
+    message:string;
 
     frmProduct:FormGroup;
 
-    constructor(){
+    constructor(private serv:HttpService){
         this.product = new Product();
         this.products = new Array<Product>();
         this.logic = new ProductLogic();
         this.columnHeaders = new Array<string>();
         this.color = '';
+        this.message = '';
 
         // instantiate the FormGroup and map it with the Model class using FormContol and validation rules
         //  'ProductRowId': new FormControl(this.product.ProductRowId)
@@ -56,7 +60,8 @@ export class ProductFormComponent implements OnInit {
         //  Object.keys(obj), will read public members of the obj
         this.columnHeaders = Object.keys(this.product);
         console.log(JSON.stringify(this.columnHeaders));
-        this.products  =this.logic.getProducts();
+        //this.products  =this.logic.getProducts();
+       this.loadData();
     } 
 
     clear():void {
@@ -66,10 +71,41 @@ export class ProductFormComponent implements OnInit {
     save(){
         this.product = this.frmProduct.value;
         this.products = this.logic.saveProduct(this.product);
+        
     }
 
     getSelectedProduct(p:Product):void {
         this.frmProduct.setValue(p);
+    }
+
+    loadData():void {
+        this.serv.getData().subscribe((response)=>{
+            // data will be streamed from Observable and will be delivered to the component
+            this.products = response;
+            this.message = 'data received successfully';
+        },(error)=>{
+            this.message=`Error Occured while receiving data ${error}`;    
+        });
+    }
+
+    saveData() :any{
+        this.serv.postData(this.product).subscribe((response)=>{
+            // data will be streamed from Observable and will be delivered to the component
+            this.products.push(response);
+            this.message = 'data added successfully';
+        },(error)=>{
+            this.message=`Error Occured while adding data ${error}`;    
+        });
+       // this.loadData();
+    }
+
+    delete(id : number) : any{
+        this.serv.deleteData(id).subscribe((response)=>{
+          this.products = this.products.filter(item => item.ProductRowId !== this.product.ProductRowId);
+        },(error)=>{
+            this.message=`Error Occured while deleting data ${error}`;    
+        });
+        //this.loadData();
     }
 
      

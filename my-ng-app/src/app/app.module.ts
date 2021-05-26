@@ -37,6 +37,6 @@ import { HttpServieComponent } from './components/httpservicecomponent/app.https
   // is making the Service Instance available to Components from
   // different Module
  // providers: [StringUtiities],
-  bootstrap: [HttpServieComponent]
+  bootstrap: [ProductFormComponent]
 })
 export class AppModule { }

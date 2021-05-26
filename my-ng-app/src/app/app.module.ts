@@ -24,6 +24,8 @@ import { ElementUserComponent } from './eleemntsapp/app.elementuser.component';
  // imporiting the litelement code file
 import './litElementsApp/app.simple.litelement'
 import { LitElementComponent } from './litElementsApp/app.litelement.component';
+import './litElementsApp/app.grid.litelement'
+import { GridElementComponent } from './litElementsApp/app.gridLitelement.component';
 
  
 // The AppModule class is decoared with @NgModule, to set the behavior of AppMOdule as 'Angular-MOdule'
@@ -36,7 +38,7 @@ import { LitElementComponent } from './litElementsApp/app.litelement.component';
      UtilityComponent,
      CategorySenderComponent, ProductReceiverComponent,
      HttpServieComponent, DropDownElementComponent, ElementUserComponent,
-     LitElementComponent
+     LitElementComponent,GridElementComponent
   ],
    
 
@@ -53,7 +55,7 @@ import { LitElementComponent } from './litElementsApp/app.litelement.component';
   // is making the Service Instance available to Components from
   // different Module
  // providers: [StringUtiities],
-  bootstrap: [LitElementComponent]
+  bootstrap: [GridElementComponent]
 })
 export class AppModule { 
 

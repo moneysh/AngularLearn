@@ -41,12 +41,33 @@ export class ProductFormComponent implements OnInit {
                      Validators.pattern('[0-9]+'),
                      CustomValidator.checkEven
                  ])),
-            'ProductId': new FormControl(this.product.ProductId),
-            'ProductName': new FormControl(this.product.ProductName),
-            'CategoryName': new FormControl(this.product.CategoryName),
-            'Manufacturer': new FormControl(this.product.Manufacturer),
-            'Description': new FormControl(this.product.Description),
-            'BasePrice': new FormControl(this.product.BasePrice)
+            'ProductId': new FormControl(this.product.ProductId,
+                Validators.compose([
+                    Validators.required
+
+                ])),
+            'ProductName': new FormControl(this.product.ProductName,
+                Validators.compose([
+                    Validators.required,
+                    Validators.pattern('[A-Z ]+[a-z]*')
+                ])),
+            'CategoryName': new FormControl(this.product.CategoryName ,
+                Validators.compose([
+                    Validators.required
+                ])),
+            'Manufacturer': new FormControl(this.product.Manufacturer,
+                Validators.compose([
+                    Validators.required
+                ])),
+            'Description': new FormControl(this.product.Description,
+                Validators.compose([
+                    Validators.required
+                ])),
+            'BasePrice': new FormControl(this.product.BasePrice,
+                Validators.compose([
+                    Validators.required,
+                    Validators.pattern('[0-9]+')
+                ]))
         });
 
 

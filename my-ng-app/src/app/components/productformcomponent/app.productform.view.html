@@ -28,6 +28,12 @@
                     <div class="form-group">
                         <label>Product Name</label>
                         <input type="text" class="form-control" formControlName="ProductName">
+
+                        <div class="alert alert-danger"
+                         *ngIf="frmProduct.controls.ProductName.dirty&&!frmProduct.controls.ProductName.valid">
+                            <p *ngIf="frmProduct.controls.ProductName.errors?.required">Value is Mandatory</p>
+                            <p *ngIf="frmProduct.controls.ProductName.errors?.pattern">Value must start with Capital</p>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Category Name</label>

@@ -16,4 +16,15 @@ export class CustomValidator {
             };
         }
      }
+
+     static checkUnique(ctrl:AbstractControl):any {
+        let value = parseInt(ctrl.value);
+        if(value % 2 === 0){
+            return null;  // valid
+        } else {
+            return {
+                even:false    
+            };
+        }
+     }
 }

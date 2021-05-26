@@ -71,7 +71,7 @@
                        </tr> 
                    </tbody>
                </table> -->
-               <table class="table table-bordered table-striped">
+               <!-- <table class="table table-bordered table-striped">
                    <thead>
                        <tr>
                            <th *ngFor="let header of columnHeaders">{{header}}</th>
@@ -82,7 +82,9 @@
                            <td *ngFor="let header of columnHeaders">{{prd[header]}}</td>
                        </tr>
                    </tbody>
-               </table>
+               </table> -->
+
+               <app-grid-component [DataSource]="products"></app-grid-component>
             </td>
         </tr>
     </tbody>

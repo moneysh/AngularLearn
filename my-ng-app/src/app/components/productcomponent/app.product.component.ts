@@ -50,4 +50,6 @@ export class ProductComponent implements OnInit {
         this.product.Manufacturer = evt;
         console.log(`Man NAme ${this.product.Manufacturer}`);
     }
+
+    
 }

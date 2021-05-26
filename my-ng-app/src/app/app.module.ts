@@ -5,13 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from "./components/productcomponent/app.product.component";
 import { DropDownComponent } from './directives/componentsirective/app.dropdown.component';
+import { GridComponent } from './directives/componentsirective/app.grid.component';
+
 
 // The AppModule class is decoared with @NgModule, to set the behavior of AppMOdule as 'Angular-MOdule'
 // aka 'the container for all Angular Standard object'
 
 @NgModule({
   declarations: [
-    AppComponent, ProductComponent, DropDownComponent
+    AppComponent, ProductComponent, DropDownComponent , GridComponent
   ],
    
   imports: [

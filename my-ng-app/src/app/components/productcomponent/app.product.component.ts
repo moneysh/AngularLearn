@@ -13,6 +13,7 @@ export class ProductComponent implements OnInit {
     product:Product;
     products:Array<Product>;
     private logic:ProductLogic;
+    tax:number;
     // save these constants into local public properties so that they can be used for databinding
     categories = Categories;
     manufacturers  =Manufacturers;
@@ -22,6 +23,7 @@ export class ProductComponent implements OnInit {
         this.products = new Array<Product>();
         this.logic = new ProductLogic();
         this.columnHeaders = new Array<string>();
+        this.tax = 0;
     }
 
     ngOnInit():void {
@@ -35,6 +37,7 @@ export class ProductComponent implements OnInit {
         this.product = new Product();
     }
     save(){
+        this.tax= this.product.BasePrice * 0.2;
         this.products = this.logic.saveProduct(this.product);
     }
 

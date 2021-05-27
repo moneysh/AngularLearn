@@ -410,4 +410,5 @@ https://www.devcurry.com/2019/11/parallel-http-calls-from-angular.html
 
 1. Create a Mult-Column List using LitElements (No Drop Down)
 
-
+# Date 26-May-2021
+1. Write a Test on the Component thatb will ake sure that when the save button is clicked the new record is added in the table and when the row is selected from the table then cell values from the selected row are displayed in textbox  

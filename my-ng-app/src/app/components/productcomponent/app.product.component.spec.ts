@@ -63,7 +63,7 @@ describe('Product Component Test',()=>{
     }); 
 
     it('new product entry should be saved and displayed',()=>{
-        // arrange
+        
         let prd = new Product();
         prd.ProductRowId = 102;
         prd.ProductId = "prd-102";
@@ -126,10 +126,15 @@ describe('Product Component Test',()=>{
         
         
         console.log(htmlTemplate.querySelector('input[id="ProductRowId"]').value);
-        console.log(htmlTemplate.querySelector('input[id="ProductRowId"]').ngModel);
 
 
         expect(htmlTemplate.querySelector('input[id="ProductRowId"]').value).toEqual(selectedProductRowId);
+        expect(htmlTemplate.querySelector('input[id="ProductId"]').value).toEqual(selectedProductId);
+        expect(htmlTemplate.querySelector('input[id="ProductName"]').value).toEqual(selectedProdcutName);
+        expect(htmlTemplate.querySelector('select[id="CategoryName"]').value).toEqual(selectedProductCategory);
+        expect(htmlTemplate.querySelector('select[id="Manufacturer"]').value).toEqual(selectedManufacturer);
+        expect(htmlTemplate.querySelector('input[id="Description"]').value).toEqual(desc);
+        expect(htmlTemplate.querySelector('input[id="BasePrice"]').value).toEqual(baseprice);
        
            
         

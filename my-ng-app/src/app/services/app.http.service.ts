@@ -7,7 +7,7 @@ import { Product } from "./../models/app.product.model";
     providedIn:'root'
 })
 export class HttpService {
-    constructor(private http:HttpClient){}
+    constructor(public http:HttpClient){}
     private url:string = 'https://apiapptrainingnewapp.azurewebsites.net/api/products';
 
     getData(): Observable<Product[]> {

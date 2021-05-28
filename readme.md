@@ -379,6 +379,60 @@ npm install --save lit-element @webcomponents/custom-elements @webcomponents/web
 5.  lit-html, the HTML template under the Shodow DOM 
 
 
+# Decorators
+Scenario 1: CReate a application log for all methods in Component class
+    - Log Parameters
+    - Log Result
+    - Log Exception
+Scenation 2: Managing the repetative Executable Logic based on varing parameters
+    - e.g. Managing Http Calls GET / PUT / POST / DELETE     
+        - Common parameters
+            - Url, for all requests
+            - body and headers
+                - Post and Put
+            - headers
+                - Secure calls, versioning, etc    
+- They are pre-processed objects provided by ES 7
+    - Currently supported only in TypeScript
+    - tsc transpiler with tsconfig.json contains Decorators settings for execution
+- Two Types of decorators
+    - Class Decorators
+    - Method decorators
+
+# Peripheral
+- UI Designer
+    - Uses CSS Advaced Tools or Frameworks to design UI
+        - Bootstrap
+        - Flexbox
+        - Iota
+    -  SASS, Syntactical Awosome StyleSheet, used to create .scss files
+        - .scss are object driven CSS Style Sheets    
+    - SCSS are not compativle to Browser        
+- UI Developer
+    - Uses JS Lib / Frewl for Front-End App development
+        - HTML is Encapsulated by the code    
+- Automated Workflow those are used to divide the big tasks into small independent Tasks
+    - grunt.js
+        - JavaScript Task Manager used to Concat, Minify JS files and link CSS with them based on cofiguration
+            - Independent Tasks
+                - concat()
+                - minify() aka dirtify()
+                - scss()
+                - Transpilation of ES 6 to ES 3
+                - Load Modules
+            - gruntfile.js    
+    - gulp.js
+        - An Automated workflow tahtb is used to pipe() multiple tasks together
+            - Recommended in Large Projects where multiple teams areb working on Several JS , CSS files
+        - gulp package
+            - the Task Manager must be installed in global scope. Support ES 6+  
+            - npm install -g gulp  
+    - WebPack
+        - Task Manager + MOdule Loader                 
+
+
+
+
 # Hands-on Lab
 # Date : 19-May-2021
 1. Create a 'Angular Calculator' looks like the WIndows Calculator with scientific Features (Mandatory)

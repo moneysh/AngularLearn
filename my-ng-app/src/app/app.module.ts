@@ -53,7 +53,7 @@ import { LitElementComponent } from './litElementsApp/app.litelement.component';
   // is making the Service Instance available to Components from
   // different Module
  // providers: [StringUtiities],
-  bootstrap: [ProductComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { 
 

@@ -1,6 +1,6 @@
  
 import { Component } from '@angular/core';
-
+import { logMethod } from "./../customdecorator/app.custom.decorator";
 
 // Component decorator class
 
@@ -36,18 +36,27 @@ export class AppComponent {
      this.departments.push({DeptNo:40,DeptName:'TR'});
      this.seletDept = {};
      this.toggle  =false;
+
+     this.add('M', 'S');
    }
+
+   @logMethod()
    display():void{
      alert('I am Clicked');
      this.message = 'HAHA HIHI HUHU';
    }
 
+   @logMethod()
    setToggle():void {
      if(!this.toggle){
        this.toggle = true;
      } else {
        this.toggle = false;
      }
-       
+   }
+
+   @logMethod()
+   add(x:string, y:string):void {
+     console.log(`x = ${x} && y = ${y}`);
    }
 }

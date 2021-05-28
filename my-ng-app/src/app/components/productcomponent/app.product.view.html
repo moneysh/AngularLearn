@@ -6,41 +6,41 @@
                 <div class="container">
                     <div class="form-group">
                         <label>Product Row Id</label>
-                        <input type="text" class="form-control" [(ngModel)]="product.ProductRowId">
+                        <input id="ProductRowId" type="text" [value]="product.ProductRowId" class="form-control" [(ngModel)]="product.ProductRowId">
                     </div>
                     <div class="form-group">
                         <label>Product Id</label>
-                        <input type="text" class="form-control" [(ngModel)]="product.ProductId">
+                        <input id="ProductId" type="text" class="form-control" [value]="product.ProductId" [(ngModel)]="product.ProductId">
                     </div>
                     <div class="form-group">
                         <label>Product Name</label>
-                        <input type="text" class="form-control" [(ngModel)]="product.ProductName">
+                        <input id="ProductName" type="text" class="form-control" [value]="product.ProductName" [(ngModel)]="product.ProductName">
                     </div>
                     <div class="form-group">
                         <label>Category Name</label>
-                        <!-- <select class="form-control" [(ngModel)]="product.CategoryName">
+                        <select id="CategoryName" class="form-control" [(ngModel)]="product.CategoryName" [value]="product.CategoryName">
                             <option *ngFor="let cat of categories" value="{{cat}}">{{cat}}</option>
-                        </select> -->
-                        <app-dropdown-component [DataSource]="categories"
+                        </select>
+                        <!-- <app-dropdown-component [DataSource]="categories"
                          (notify)="getCatName($event)"
-                    ></app-dropdown-component>
+                    ></app-dropdown-component> -->
                     </div>
                     <div class="form-group">
                         <label>Manufacturer</label>
-                        <!-- <select class="form-control" [(ngModel)]="product.Manufacturer">
+                        <select id="Manufacturer" class="form-control" [(ngModel)]="product.Manufacturer" [value]="product.Manufacturer">
                             <option *ngFor="let man of manufacturers" value="{{man}}">{{man}}</option>
-                        </select> -->
-                        <app-dropdown-component [DataSource]="manufacturers"
+                        </select>
+                        <!-- <app-dropdown-component [DataSource]="manufacturers"
                         (notify)="getManName($event)"
-                      ></app-dropdown-component>
+                      ></app-dropdown-component> -->
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <input type="text" class="form-control" [(ngModel)]="product.Description">
+                        <input id="Description" type="text" class="form-control" [value]="product.Description" [(ngModel)]="product.Description">
                     </div>
                     <div class="form-group">
                         <label>Base Price</label>
-                        <input type="text" class="form-control" [(ngModel)]="product.BasePrice">
+                        <input id="BasePrice" type="text" class="form-control" [value]="product.BasePrice" [(ngModel)]="product.BasePrice">
                         <br>
                         <input type="text" disabled [value]="tax" class="form-control" >
                     </div>
@@ -73,7 +73,7 @@
                        </tr> 
                    </tbody>
                </table> -->
-               <table class="table table-bordered table-striped">
+               <table id="product-list" class="table table-bordered table-striped">
                    <thead>
                        <tr>
                            <th *ngFor="let header of columnHeaders">{{header}}</th>

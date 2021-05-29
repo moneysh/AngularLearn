@@ -2,11 +2,15 @@
     <thead>
         <tr>
             <th *ngFor="let header of ColumnHeaders" >{{header}}</th>
+            <th *ngIf="CanDelete">Delete</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let prd of DataSource" >
+        <tr *ngFor="let prd of DataSource" (click) = "SelectProduct(prd)">
             <td *ngFor="let header of ColumnHeaders">{{prd[header]}}</td>
+            <td *ngIf="CanDelete">
+                <input type="button" class="btn-primary" value = "Delete" (click) = "DeleteRow(prd)">
+            </td>
         </tr>
     </tbody>
 </table>

@@ -13,6 +13,7 @@ export class ProductComponent implements OnInit {
     product:Product;
     products:Array<Product>;
     private logic:ProductLogic;
+    canDelete : boolean;
     // save these constants into local public properties so that they can be used for databinding
     categories = Categories;
     manufacturers  =Manufacturers;
@@ -22,6 +23,7 @@ export class ProductComponent implements OnInit {
         this.products = new Array<Product>();
         this.logic = new ProductLogic();
         this.columnHeaders = new Array<string>();
+        this.canDelete = true ;
     }
 
     ngOnInit():void {
@@ -50,6 +52,19 @@ export class ProductComponent implements OnInit {
         this.product.Manufacturer = evt;
         console.log(`Man NAme ${this.product.Manufacturer}`);
     }
+
+    DeleteProduct(evt : Product): void {
+        this.products = this.products.filter( prd => prd !== evt) ;
+        
+
+        console.log(this.products);
+        console.log(evt);
+    
+    }
+
+    
+
+
 
     
 }

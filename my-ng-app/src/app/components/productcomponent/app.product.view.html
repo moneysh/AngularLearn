@@ -84,7 +84,7 @@
                    </tbody>
                </table> -->
 
-               <app-grid-component [DataSource]="products"></app-grid-component>
+               <app-grid-component [DataSource]="products" [CanDelete] = "canDelete"  (notify) = "DeleteProduct($event)" (notify)= "getSelectedProduct($event)"></app-grid-component>
             </td>
         </tr>
     </tbody>
